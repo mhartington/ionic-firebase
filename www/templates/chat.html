@@ -1,0 +1,46 @@
+<ion-view view-title="Chat">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-positive button-clear icon ion-gear-a" ng-click="modal.show()"></button>
+  </ion-nav-buttons>
+
+
+
+  <ion-content delegate-handle="chat" id="chat-list" on-hold="showTime = !showTime"
+  class="content-stable mh-padding">
+
+
+    <div ng-repeat="post in posts" ng-class="{other:post.user !== handle}" class="messages">
+
+      <div class="message slide-right" ng-class="{'slide-right': !showTime, '': showTime}">
+        <span ng-if="post.message">{{post.message}}
+  </span>
+        <img ng-if="post.img" ng-src="{{post.img}}" class="post-img" />
+
+      </div>
+
+      <div class="time slide-right" ng-class="{'slide-right': !showTime, '': showTime}">
+
+        {{post.timestamp | date:"h:mma"}}
+      </div>
+    </div>
+
+
+
+  </ion-content>
+
+
+  <form id="footer-input" ng-submit="add(message)">
+    <ion-footer-bar keyboard-attach class="item-input-inset">
+
+      <label class="item-input-wrapper">
+        <i class="icon ion-ios7-search placeholder-icon"></i>
+        <input type="text" placeholder="Message" ng-model="message">
+      </label>
+      <a class="button button-clear" ng-click="takePicture()">
+        <i class="icon ion-camera"></i>
+      </a>
+    </ion-footer-bar>
+  </form>
+
+
+</ion-view>

@@ -1,0 +1,10 @@
+<ion-view view-title="Playlists">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="speaker in speakers" href="#/app/speaker/{{speaker.id}}" class="item item-avatar">
+        <img ng-src="{{speaker.face}}">
+        <h2>{{speaker.name}}</h2>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
