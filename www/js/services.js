@@ -7,7 +7,6 @@ angular.module('ioniChat.services', ['firebase'])
   var APIUrl = "https://cambridge-firebase.firebaseio.com/",
     ref = new Firebase(APIUrl),
     postsRef = ref.child('posts');
-
   return {
     posts: function() {
       return $firebaseArray(postsRef.limitToLast(100));
