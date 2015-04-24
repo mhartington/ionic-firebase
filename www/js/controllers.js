@@ -9,6 +9,7 @@ angular.module('ioniChat.controllers', [])
   $scope.speakers = Speakers.all();
 })
 
+
 .controller('SpeakerCtrl', function($scope, $stateParams, Speakers) {
   console.log($stateParams);
   $scope.speaker = Speakers.get($stateParams.speakerId);

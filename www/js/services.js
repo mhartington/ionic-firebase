@@ -4,7 +4,7 @@ angular.module('ioniChat.services', ['firebase'])
  * A simple Firebase service
  */
 .factory('ChatManager', function($firebaseArray) {
-  var APIUrl = "https://cambridge-firebase.firebaseio.com/",
+  var APIUrl = "https://ionic-local-test.firebaseio.com/",
     ref = new Firebase(APIUrl),
     postsRef = ref.child('posts');
   return {
