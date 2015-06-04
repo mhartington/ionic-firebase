@@ -4,9 +4,9 @@ angular.module('ioniChat.services', ['firebase'])
  * A simple Firebase service
  */
 .factory('ChatManager', function($firebaseArray) {
-  var APIUrl = "https://ionic-local-test.firebaseio.com/",
-    ref = new Firebase(APIUrl),
-    postsRef = ref.child('posts');
+  var APIUrl = 'https://ionic-hack-reactor.firebaseio.com/';
+  var ref = new Firebase(APIUrl);
+  var postsRef = ref.child('posts');
   return {
     posts: function() {
       return $firebaseArray(postsRef.limitToLast(100));
@@ -49,7 +49,6 @@ angular.module('ioniChat.services', ['firebase'])
     face: 'https://pbs.twimg.com/profile_images/491995398135767040/ie2Z_V6e.jpeg'
   }];
 
-
   return {
     all: function() {
       return speakers;
@@ -58,5 +57,5 @@ angular.module('ioniChat.services', ['firebase'])
       // Simple index lookup
       return speakers[speakerId];
     }
-  }
+  };
 });

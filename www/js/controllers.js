@@ -1,21 +1,17 @@
 angular.module('ioniChat.controllers', [])
 
-.controller('AppCtrl', function($scope) {
-  // globals stuff can go here, but keep it light
-
-})
+.controller('AppCtrl', function() {})
 
 .controller('SpeakersCtrl', function($scope, Speakers) {
   $scope.speakers = Speakers.all();
 })
-
 
 .controller('SpeakerCtrl', function($scope, $stateParams, Speakers) {
   console.log($stateParams);
   $scope.speaker = Speakers.get($stateParams.speakerId);
 })
 
-.controller('ChatCtrl', function($scope, ChatManager, $cordovaCamera, $ionicScrollDelegate, $ionicModal, $ionicActionSheet) {
+.controller('ChatCtrl', function($scope, ChatManager, $cordovaCamera, $ionicScrollDelegate, $ionicModal, $ionicActionSheet, $timeout) {
   $scope.handle = localStorage.handle || 'Anonymous';
   $scope.showTime = false;
   console.log($scope.showTime);
@@ -32,10 +28,29 @@ angular.module('ioniChat.controllers', [])
       user: $scope.handle
     });
   }
+  $scope.data = {};
+  var isIOS = ionic.Platform.isWebView() && ionic.Platform.isIOS();
+  $scope.inputUp = function() {
+    window.addEventListener('native.keyboardshow', function() {
+      if (isIOS) {
+        $scope.data.keyboardHeight = 216;
+      }
+      $timeout(function() {
+        $ionicScrollDelegate.scrollBottom(true);
+      }, 300);
+
+    });
+  };
+
+  $scope.inputDown = function() {
+    if (isIOS) {
+      $scope.data.keyboardHeight = 0;
+    }
+    $ionicScrollDelegate.resize();
+  };
 
   $scope.posts = ChatManager.posts();
   $scope.posts.$watch(scrollBottom);
-
 
   $scope.add = function(message) {
     addPost(message);
@@ -72,7 +87,7 @@ angular.module('ioniChat.controllers', [])
         saveToPhotoAlbum: false
       };
       $cordovaCamera.getPicture(options).then(function(imageData) {
-        var photo = "data:image/jpeg;base64," + imageData;
+        var photo = 'data:image/jpeg;base64,' + imageData;
         addPost(null, photo);
       }, function(err) {
         // error

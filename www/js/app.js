@@ -16,7 +16,7 @@ angular.module('ioniChat', ['ionic', 'ioniChat.controllers', 'ioniChat.services'
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      window.StatusBar.styleDefault();
     }
   });
 })
@@ -24,38 +24,38 @@ angular.module('ioniChat', ['ionic', 'ioniChat.controllers', 'ioniChat.services'
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  .state('app', {
-    url: "/app",
+    .state('app', {
+    url: '/app',
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
   .state('app.chat', {
-    url: "/chat",
+    url: '/chat',
     views: {
       'menuContent': {
-        templateUrl: "templates/chat.html",
+        templateUrl: 'templates/chat.html',
         controller: 'ChatCtrl'
       }
     }
   })
 
-    .state('app.speakers', {
-      url: "/speakers",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/speakers.html",
-          controller: 'SpeakersCtrl'
-        }
-      }
-    })
-
-  .state('app.speaker', {
-    url: "/speaker/:speakerId",
+  .state('app.speakers', {
+    url: '/speakers',
     views: {
       'menuContent': {
-        templateUrl: "templates/speaker.html",
+        templateUrl: 'templates/speakers.html',
+        controller: 'SpeakersCtrl'
+      }
+    }
+  })
+
+  .state('app.speaker', {
+    url: '/speaker/:speakerId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/speaker.html',
         controller: 'SpeakerCtrl'
       }
     }

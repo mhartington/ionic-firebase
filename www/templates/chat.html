@@ -12,10 +12,8 @@
     <div ng-repeat="post in posts" ng-class="{other:post.user !== handle}" class="messages">
 
       <div class="message slide-right" ng-class="{'slide-right': !showTime, '': showTime}">
-        <span ng-if="post.message">{{post.message}}
-  </span>
+        <span ng-if="post.message">{{post.message}}</span>
         <img ng-if="post.img" ng-src="{{post.img}}" class="post-img" />
-
       </div>
 
       <div class="time slide-right" ng-class="{'slide-right': !showTime, '': showTime}">
@@ -34,12 +32,12 @@
 
       <label class="item-input-wrapper">
         <i class="icon ion-ios7-search placeholder-icon"></i>
-        <input type="text" placeholder="Message" ng-model="message">
+        <input ng-focus="inputUp()" ng-blur="inputDown()" type="text" placeholder="Message"
+        ng-model="message">
       </label>
       <a class="button button-clear" ng-click="takePicture()">
-      <i class="icon ion-camera"></i>
+        <i class="icon ion-camera"></i>
       </a>
-      <!-- <button class="button button-clear" >Send</button> -->
     </ion-footer-bar>
   </form>
 
